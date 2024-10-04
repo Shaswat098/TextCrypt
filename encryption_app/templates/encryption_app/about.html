@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5; /* Softer background color */
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: #20232a;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-right: auto; /* This ensures it stays on the left */
+        }
+
+        nav .logo a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        nav .logo a:hover {
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #61dafb;
+            color: #20232a;
+        }
+        /* Main Content Styling */
+        .content {
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #007bff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+        }
+
+        h2, h3, h4 {
+            color: #007bff;
+            border-bottom: 2px solid #e9ecef; /* Bottom border for headings */
+            padding-bottom: 10px;
+            margin-bottom: 20px; /* Margin for spacing */
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem; /* Increased font size for better readability */
+        }
+
+        .technology-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.3s ease; /* Smooth scaling effect */
+        }
+
+        .technology-card:hover {
+            transform: scale(1.02); /* Scale effect on hover */
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for footer */
+        }
+    </style>
+</head>
+<body>
+    <!-- Reusable Navbar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">TextCrypt</a>
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'encryption_info' %}">Learn</a></li>
+            <li><a href="{% url 'encrypt_message' %}">Encrypt</a></li>
+            <li><a href="{% url 'decrypt_message' %}">Decrypt</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div class="container">
+            <h1>About TextCrypt</h1>
+            <p>{{ content.description }}</p>
+
+            <h2>Why Encryption Matters</h2>
+            <p>{{ content.why_encryption_matters.importance_of_encryption }}</p>
+
+            <h3>Real-World Implications</h3>
+            <ul class="list-group">
+                {% for item in content.why_encryption_matters.real_world_implications %}
+                    <li class="list-group-item list-group-item-light">{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Core Technologies</h2>
+            <div>
+                {% for tech, details in content.core_technologies.items %}
+                    <div class="technology-card">
+                        <h3>{{ tech|capfirst }}</h3>
+                        <p>{{ details.description }}</p>
+                        <h4>Key Features:</h4>
+                        <ul class="list-group">
+                            {% for feature in details.key_features %}
+                                <li class="list-group-item list-group-item-light">{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h4>Use Cases:</h4>
+                        <ul class="list-group">
+                            {% for use_case, description in details.use_cases.items %}
+                                <li class="list-group-item list-group-item-light"><strong>{{ use_case }}:</strong> {{ description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TextCrypt. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

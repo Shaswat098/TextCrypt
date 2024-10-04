@@ -1,0 +1,127 @@
+{% extends 'info_app/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f9f9f9;
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Main content styling */
+    .content {
+        padding: 80px 20px; /* Added padding-top for fixed navbar */
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #007bff; /* Primary color */
+    }
+
+    /* Card styling for encryption techniques */
+    .encryption-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .encryption-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .encryption-title {
+        font-weight: bold;
+        color: #343a40; /* Dark text color */
+    }
+
+    .encryption-description {
+        font-size: 1.1em;
+        color: #6c757d; /* Muted text color */
+    }
+
+    .use-case-item {
+        font-size: 1em;
+        color: #495057; /* Darker color for use case items */
+    }
+
+    .back-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+
+    .back-btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .card-header {
+        background-color: #007bff; /* Header color */
+        color: white;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        padding: 10px;
+        text-align: left; /* Align header text to the left */
+    }
+
+    .list-group {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .list-group-item {
+        background-color: #e9ecef; /* Light gray for list items */
+        border: none;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px; /* Rounded corners for list items */
+        transition: background-color 0.3s;
+    }
+
+    .list-group-item:hover {
+        background-color: #d4d4d4; /* Darker gray on hover */
+    }
+</style>
+
+<div class="content">
+    <h1 class="display-4 text-primary">Encryption Techniques</h1>
+
+    <div class="container">
+        <div class="row">
+            {% for technique in content.encryption_techniques.values %}
+            <div class="col-md-4 mb-4">
+                <div class="card encryption-card">
+                    <div class="card-header">
+                        <h2 class="encryption-title">{{ technique.name }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-subtitle text-muted mb-2">Type: {{ technique.type }}</h3>
+                        <p class="card-text encryption-description">{{ technique.description }}</p>
+                        <h3 class="card-subtitle text-muted mb-2">Use Cases:</h3>
+                        <ul class="list-group">
+                            {% for use in technique.use_cases %}
+                            <li class="list-group-item use-case-item">{{ use }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'encryption_info' %}" class="back-btn">Back to What is Encryption</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextCrypt - Encryption Toolbox</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: #20232a;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-right: auto; /* This ensures it stays on the left */
+        }
+
+        nav .logo a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        nav .logo a:hover {
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #61dafb;
+            color: #20232a;
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            padding: 50px 0; /* Adjust padding to make it smaller */
+            text-align: center;
+            background-color: #61dafb;
+            color: white;
+            height: 50vh; /* Set the height to 50% of the viewport height */
+            background-image: url("{% static 'encryption_app/home.jpg' %}"); /* Replace with your actual image path */
+            background-size: cover; /* Ensure the image covers the container */
+            background-position: center;
+            background-repeat: no-repeat; /* Prevent repeating the image */
+            position: relative; /* Make it relative for the absolute positioning of text */
+        }
+
+        /* Hero Text Overlay */
+        .hero-text {
+            position: absolute;
+            top: 40%; /* Adjusted position */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Button Style for Call-to-Action */
+        .hero .cta-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+        }
+
+        .hero .cta-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tools Section Styling */
+        .tools-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin-top: 50px; /* Added margin to avoid overlap with navbar */
+        }
+
+        .tools-section h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #333;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .tool-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            min-width: 250px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 2px solid #61dafb;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .tool-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .tool-card a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .tool-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #20232a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-card {
+                width: 90%;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reusable Navbar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">TextCrypt</a>
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'encryption_info' %}">Learn</a></li>
+            <li><a href="{% url 'encrypt_message' %}">Encrypt</a></li>
+            <li><a href="{% url 'decrypt_message' %}">Decrypt</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Text Overlay -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Textcrypt: Secure, Encrypt, Decrypt</h1>
+            <p>Your all-in-one digital encryption toolbox</p>
+            <a href="{% url 'about' %}" class="cta-btn">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Tools Section -->
+    <div class="tools-section">
+        <h2>Encryption Tools</h2>
+        <div class="tool-grid">
+            <!-- AES Tool Card -->
+            <div class="tool-card">
+                <img src="{% static 'encryption_app/aes.jpg' %}" alt="AES Encryption">
+                <h3>AES Encryption/Decryption</h3>
+                <p>Free Online AES Tool: Encrypt, decrypt, and validate your data.</p>
+                <a href="C:/Users/ezhil/Desktop/encrypt.html">Try AES Encryption</a>
+            </div>
+
+            <!-- RSA Tool Card -->
+            <div class="tool-card">
+                <img src="{% static 'encryption_app/rsa.jpg' %}" alt="RSA Encryption">
+                <h3>RSA Encryption/Decryption</h3>
+                <p>Secure and verify RSA encryption easily and reliably.</p>
+                <a href="C:/Users/ezhil/Desktop/encrypt.html">Try RSA Encryption</a>
+            </div>
+
+            <!-- Fernet Tool Card -->
+            <div class="tool-card">
+                <img src="{% static 'encryption_app/fernet.jpg' %}" alt="Fernet Encryption">
+                <h3>Fernet Encryption/Decryption</h3>
+                <p>Encrypt and decrypt data using the secure Fernet symmetric encryption method.</p>
+                <a href="C:/Users/ezhil/Desktop/encrypt.html">Try Fernet Encryption</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; A project by Ezhil, Shaswat, and Ronit.</p>
+    </footer>
+
+</body>
+</html>

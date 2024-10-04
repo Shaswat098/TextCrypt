@@ -1,0 +1,34 @@
+{% extends 'info_app/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Encryption Section -->
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-primary">What is Encryption?</h1>
+        <p class="lead text-justify">{{ content.encryption.content }}</p>
+    </div>
+
+    <!-- Decryption Section -->
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-primary">What is Decryption?</h1>
+        <p class="lead text-justify">{{ content.decryption.content }}</p>
+    </div>
+
+    <!-- Video Reference Section -->
+    <div class="text-center my-4">
+        <p class="font-weight-bold">Refer to the given video to know more about Encryption-Decryption:</p>
+        <div class="embed-responsive embed-responsive-16by9 mb-4">
+            <iframe class="embed-responsive-item" width="560" height="315"
+                src="https://www.youtube.com/embed/LA3fah6i-4A?si=uVA-nZ0SGl4nBn1c"
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Button to Learn More -->
+    <div class="text-center">
+        <a href="{% url 'encryption_techniques' %}" class="btn btn-primary btn-lg mt-3 mb-5">Learn about Encryption Techniques</a>
+    </div>
+</div>
+{% endblock %}

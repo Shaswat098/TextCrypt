@@ -1,0 +1,36 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h1 class="display-4 text-center mb-4">Result</h1>
+
+        {% if encrypted_message %}
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading text-center">Encrypted Message</h4>
+                <hr>
+                <p><strong>Encrypted Message:</strong> {{ encrypted_message }}</p>
+                <p><strong>Key:</strong> {{ key }}</p>
+                <p><strong>Encryption Type:</strong> {{ encryption_type }}</p>
+            </div>
+        {% elif decrypted_message %}
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading text-center">Decrypted Message</h4>
+                <hr>
+                <p>{{ decrypted_message }}</p>
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                <p class="text-center">No result to display.</p>
+            </div>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="{% url 'encrypt_message' %}" class="btn btn-primary btn-lg mx-2">Encrypt Another Message</a>
+            <a href="{% url 'decrypt_message' %}" class="btn btn-secondary btn-lg mx-2">Decrypt Another Message</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
